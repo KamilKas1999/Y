@@ -13,7 +13,7 @@ public class DefaultUserService implements UserService {
 
 
     public void createUser(final String name, final String username) {
-        final User user = new User(name, username);
+        final User user = User.builder().firstname(name).lastname(username).build();
         userRepository.save(user);
     }
 
