@@ -3,14 +3,11 @@ package com.kasprzak.kamil.demoapp.demoapp.post.dto;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @Builder
-public class PostsDTO {
+public class CommentPostDTO {
 
-    private List<PostDTO> posts;
-
+    private long postId;
+    private long userId;
+    private String content;
 }
-
-

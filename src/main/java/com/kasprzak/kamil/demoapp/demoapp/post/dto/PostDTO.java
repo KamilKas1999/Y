@@ -7,10 +7,9 @@ import java.util.List;
 
 @Data
 @Builder
-public class PostsDTO {
+public class PostDTO {
 
-    private List<PostDTO> posts;
-
+    private long userId;
+    private String content;
+    private List<CommentDTO> comments;
 }
-
-

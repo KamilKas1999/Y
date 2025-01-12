@@ -22,11 +22,11 @@ public class UserController {
     @Autowired
     private CommandExecutor commandExecutor;
 
-    @PostMapping
-    public void createUser(final CreateUserDTO userDTO) {
-        final var command = new CreateUserCommand(userDTO.getName(), userDTO.getUsername());
-        commandExecutor.execute(command);
-    }
+//    @PostMapping
+//    public void createUser(final CreateUserDTO userDTO) {
+//        final var command = new CreateUserCommand(userDTO.getName(), userDTO.getUsername());
+//        commandExecutor.execute(command);
+//    }
 
     @GetMapping
     public UsersDTO getUsers() {

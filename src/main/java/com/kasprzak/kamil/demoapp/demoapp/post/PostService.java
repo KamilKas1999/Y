@@ -13,4 +13,6 @@ public interface PostService {
 
 
     void deletePost(long id);
+
+    void addComment(final long postId, final long userId, final String content);
 }
