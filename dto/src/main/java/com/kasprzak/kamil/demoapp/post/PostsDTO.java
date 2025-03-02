@@ -5,12 +5,9 @@ import lombok.Data;
 
 import java.util.List;
 
-@Data
 @Builder
-public class PostsDTO {
-
-    private List<PostDTO> posts;
-
-}
+public record PostsDTO(
+        List<PostDTO> posts
+) {}
 
 

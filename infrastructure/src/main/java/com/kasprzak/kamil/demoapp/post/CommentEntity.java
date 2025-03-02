@@ -18,7 +18,7 @@ public class CommentEntity {
 
     @ManyToOne
     @JoinColumn(name = "POST_ID")
-    private PostEntity postEntity;
+    private PostEntity post;
 
     @Column(name = "CONTENT")
     private String content;

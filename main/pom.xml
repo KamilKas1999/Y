@@ -5,7 +5,7 @@
     <parent>
         <artifactId>demoapp</artifactId>
         <groupId>com.kasprzak.kamil.demoapp</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -25,7 +25,6 @@
         <dependency>
             <groupId>com.kasprzak.kamil.demoapp</groupId>
             <artifactId>common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -44,7 +43,6 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -58,22 +56,18 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
-            <version>0.11.5</version>
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-impl</artifactId>
-            <version>0.11.5</version>
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-jackson</artifactId>
-            <version>0.11.5</version>
         </dependency>
         <dependency>
             <groupId>com.kasprzak.kamil.demoapp</groupId>
-            <artifactId>infrastructure</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>logic</artifactId>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -84,7 +78,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.demoapp.MainApplication</mainClass>
+                    <mainClass>com.kasprzak.kamil.demoapp.DemoAappApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

@@ -5,11 +5,18 @@
     <parent>
         <artifactId>demoapp</artifactId>
         <groupId>com.kasprzak.kamil.demoapp</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dto</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.kasprzak.kamil.demoapp</groupId>
+            <artifactId>infrastructure</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>18</maven.compiler.source>

@@ -1,42 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>pom</packaging>
+
 	<modules>
 		<module>main</module>
 		<module>common</module>
 		<module>infrastructure</module>
-        <module>dto</module>
-    </modules>
+		<module>dto</module>
+		<module>logic</module>
+	</modules>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.2</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>3.2.2</version>
+		<relativePath/>
 	</parent>
+
 	<groupId>com.kasprzak.kamil.demoapp</groupId>
 	<artifactId>demoapp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>DemoAapp</name>
 	<description>Demo project for Spring Boot</description>
-	<url/>
 
 	<properties>
-		<java.version>22</java.version>
+		<java.version>17</java.version>
+		<springdoc.version>2.2.0</springdoc.version>
+		<jjwt.version>0.11.5</jjwt.version>
+		<hibernate.validator.version>8.0.1.Final</hibernate.validator.version>
+		<jakarta.el.version>4.0.2</jakarta.el.version>
+		<swagger.annotations.version>2.2.15</swagger.annotations.version>
 	</properties>
+
 	<dependencies>
-
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
 
+		<!-- Hibernate Validator -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate.validator.version}</version>
+		</dependency>
 
+		<!-- Jakarta EL (Expression Language) -->
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>jakarta.el</artifactId>
+			<version>${jakarta.el.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
 	</dependencies>
 
-
-
+	<dependencyManagement>
+		<dependencies>
+            <!--modules-->
+			<dependency>
+				<groupId>com.kasprzak.kamil.demoapp</groupId>
+				<artifactId>common</artifactId>
+				<version>${project.version}</version>  <!-- Automatycznie pobiera wersję -->
+			</dependency>
+			<dependency>
+				<groupId>com.kasprzak.kamil.demoapp</groupId>
+				<artifactId>logic</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.kasprzak.kamil.demoapp</groupId>
+				<artifactId>infrastructure</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.kasprzak.kamil.demoapp</groupId>
+				<artifactId>dto</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+				<version>${springdoc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-api</artifactId>
+				<version>${jjwt.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-impl</artifactId>
+				<version>${jjwt.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-jackson</artifactId>
+				<version>${jjwt.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.swagger.core.v3</groupId>
+				<artifactId>swagger-annotations-jakarta</artifactId>
+				<version>${swagger.annotations.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
+

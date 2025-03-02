@@ -5,11 +5,9 @@ import lombok.Data;
 
 import java.util.List;
 
-@Data
 @Builder
-public class PostDTO {
-
-    private long userId;
-    private String content;
-    private List<CommentDTO> comments;
-}
+public record PostDTO(
+        long userId,
+        String content,
+        List<CommentDTO> comments
+) {}
