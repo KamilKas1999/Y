@@ -14,13 +14,13 @@ public class DefaultQueryExecutor implements QueryExecutor {
 
     @Override
     public <T extends QueryResult> T execute(Query query, Class<T> resultType) throws QueryHandlerNotFoundException {
-        QueryHandler<Query, QueryResult> handler = commandHandlers.stream()
+        var handler = commandHandlers.stream()
                 .filter(h -> h.supports(query))
                 .map(h -> (QueryHandler<Query, QueryResult>) h) // Unikamy niepoprawnego rzutowania
                 .findAny()
                 .orElseThrow(() -> new QueryHandlerNotFoundException(query.getClass().getSimpleName()));
 
-        QueryResult result = handler.handle(query);
+        var result = handler.handle(query);
 
         if (!resultType.isInstance(result)) {
             throw new ClassCastException("Expected result type: " + resultType + ", but got: " + result.getClass());
