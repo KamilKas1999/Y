@@ -15,6 +15,6 @@ public class CreateNotificationCommandHandler implements CommandHandler<CreateNo
 
     @Override
     public void handle(CreateNotificationCommand command) {
-
+        notificationService.createNotification(command.userId(), command.topic(), command.content());
     }
 }

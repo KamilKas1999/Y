@@ -1,6 +1,7 @@
 package com.kasprzak.kamil.demoapp.notification.mapper;
 
 import com.kasprzak.kamil.demoapp.common.mapper.Mapper;
+import com.kasprzak.kamil.demoapp.event.EventsDTO;
 import com.kasprzak.kamil.demoapp.notification.NotificationDTO;
 import com.kasprzak.kamil.demoapp.notification.NotificationsDTO;
 import com.kasprzak.kamil.demoapp.notification.query.get.NotificationsQueryResult;
