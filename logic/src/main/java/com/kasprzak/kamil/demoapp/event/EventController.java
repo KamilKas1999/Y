@@ -26,7 +26,7 @@ public class EventController {
 
 
     @GetMapping("/{userId}")
-    public NotificationsDTO getNotification(@PathVariable Long userId) {
+    public NotificationsDTO getEvents(@PathVariable Long userId) {
         var result = queryExecutor.execute(new NotificationsQuery(userId), NotificationsQueryResult.class);
         return NotificationsDTO
                 .builder()

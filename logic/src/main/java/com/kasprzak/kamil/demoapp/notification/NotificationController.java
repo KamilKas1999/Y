@@ -1,6 +1,7 @@
 package com.kasprzak.kamil.demoapp.notification;
 
 import com.kasprzak.kamil.demoapp.common.command.CommandExecutor;
+import com.kasprzak.kamil.demoapp.common.mapper.MapperExceutor;
 import com.kasprzak.kamil.demoapp.common.query.QueryExecutor;
 import com.kasprzak.kamil.demoapp.notification.query.get.NotificationsQuery;
 import com.kasprzak.kamil.demoapp.notification.query.get.NotificationsQueryResult;
@@ -22,21 +23,14 @@ public class NotificationController {
     @Autowired
     private CommandExecutor commandExecutor;
 
+    @Autowired
+    private MapperExceutor mapperExceutor;
+
 
     @GetMapping("/{userId}")
     public NotificationsDTO getNotification(@PathVariable Long userId) {
-        var result = queryExecutor.execute(new NotificationsQuery(userId), NotificationsQueryResult.class);
-        return NotificationsDTO
-                .builder()
-                .notifications(result.getNotifications().stream()
-                        .map(notificationEntity -> NotificationDTO
-                                .builder()
-                                .id(notificationEntity.getId())
-                                .topic(notificationEntity.getTopic())
-                                .content(notificationEntity.getContent())
-                                .build())
-                        .collect(Collectors.toList()))
-                .build();
+        var queryResult = queryExecutor.execute(new NotificationsQuery(userId), NotificationsQueryResult.class);
+        return mapperExceutor.map(queryResult, NotificationsDTO.class);
     }
 
 
