@@ -13,7 +13,7 @@ import com.kasprzak.kamil.demoapp.user.UserEntity;
 import com.kasprzak.kamil.demoapp.user.UserRepository;
 import com.kasprzak.kamil.demoapp.user.command.user.create.CreateUserCommand;
 import com.kasprzak.kamil.demoapp.user.command.user.create.CreateUserCommandResult;
-import com.kasprzak.kamil.demoapp.user.query.one.UsersQuery;
+import com.kasprzak.kamil.demoapp.user.query.one.UserQuery;
 import com.kasprzak.kamil.demoapp.user.query.one.UsersQueryResult;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -51,7 +51,7 @@ public class AuthenticationService {
         var command = new CreateUserCommand(request.getFirstname(), request.getLastname(), request.getEmail(),
                 request.getPassword(), request.getRole());
         var commandResult = commandExecutor.execute(command, CreateUserCommandResult.class);
-        var query = new UsersQuery(commandResult.userId());
+        var query = new UserQuery(commandResult.userId());
         var user = queryExecutor.execute(query, UsersQueryResult.class);
 
         var jwtToken = jwtService.generateToken(user.getUserEntities());

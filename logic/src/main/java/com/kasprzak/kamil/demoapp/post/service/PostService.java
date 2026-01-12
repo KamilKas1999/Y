@@ -1,4 +1,6 @@
-package com.kasprzak.kamil.demoapp.post;
+package com.kasprzak.kamil.demoapp.post.service;
+
+import com.kasprzak.kamil.demoapp.post.PostEntity;
 
 import java.util.List;
 
@@ -9,6 +11,7 @@ public interface PostService {
 
     List<PostEntity> getPosts();
 
+    public List<PostEntity> getUserPosts(Long userId);
 
     void deletePost(long id);
 

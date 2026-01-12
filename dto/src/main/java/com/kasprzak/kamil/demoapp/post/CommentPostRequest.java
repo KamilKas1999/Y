@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class CommentPostDTO {
+public class CommentPostRequest {
 
     private long postId;
     private long userId;

@@ -3,7 +3,7 @@ package com.kasprzak.kamil.demoapp.user;
 import lombok.Data;
 
 @Data
-public class DeleteUserDTO {
+public class DeleteUserRequest {
 
     private long userId;
 }

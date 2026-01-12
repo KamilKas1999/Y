@@ -15,8 +15,8 @@ public class ItemController {
     private CommandExecutor commandExecutor;
 
     @PostMapping
-    public void createItem(final CreateItemDTO createItemDTO) {
-        final var command = new CreateItemCommand(createItemDTO.getName(), createItemDTO.getDescription());
+    public void createItem(final CreateItemRequest createItemRequest) {
+        final var command = new CreateItemCommand(createItemRequest.getName(), createItemRequest.getDescription());
         commandExecutor.execute(command);
     }
 }

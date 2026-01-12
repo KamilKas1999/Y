@@ -1,17 +1,17 @@
 package com.kasprzak.kamil.demoapp.user.query.one;
 
 import com.kasprzak.kamil.demoapp.common.query.QueryHandler;
-import com.kasprzak.kamil.demoapp.user.UserService;
+import com.kasprzak.kamil.demoapp.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class UsersQueryHandler implements QueryHandler<UsersQuery, UsersQueryResult> {
+public class UserQueryHandler implements QueryHandler<UserQuery, UsersQueryResult> {
 
     private final UserService userService;
 
-    public UsersQueryResult handle(UsersQuery query) {
+    public UsersQueryResult handle(UserQuery query) {
         var user = userService.getUsersById(query.userId());
         return UsersQueryResult.builder()
                 .userEntities(user)

@@ -1,6 +1,6 @@
 package com.kasprzak.kamil.demoapp.item.command;
 
-import com.kasprzak.kamil.demoapp.item.ItemService;
+import com.kasprzak.kamil.demoapp.item.service.ItemService;
 import com.kasprzak.kamil.demoapp.common.command.CommandHandler;
 import lombok.AllArgsConstructor;
 import lombok.Data;

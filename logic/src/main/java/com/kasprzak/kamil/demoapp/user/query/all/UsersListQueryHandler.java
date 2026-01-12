@@ -1,7 +1,7 @@
 package com.kasprzak.kamil.demoapp.user.query.all;
 
 import com.kasprzak.kamil.demoapp.common.query.QueryHandler;
-import com.kasprzak.kamil.demoapp.user.UserService;
+import com.kasprzak.kamil.demoapp.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,5 +1,8 @@
-package com.kasprzak.kamil.demoapp.user;
+package com.kasprzak.kamil.demoapp.user.service;
 
+import com.kasprzak.kamil.demoapp.user.Role;
+import com.kasprzak.kamil.demoapp.user.UserEntity;
+import com.kasprzak.kamil.demoapp.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,8 +24,6 @@ public class DefaultUserService implements UserService {
 
     public Long createUser(final String name, final String lastName, final String email,
                            final String password, final Role role) {
-//        final UserEntity userEntity = UserEntity.builder().firstname(name).lastname(username).build();
-//        userRepository.save(userEntity);
         var user = UserEntity.builder()
                 .firstname(name)
                 .lastname(lastName)

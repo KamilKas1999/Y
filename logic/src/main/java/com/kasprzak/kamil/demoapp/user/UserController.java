@@ -30,10 +30,10 @@ public class UserController {
 //    }
 
     @GetMapping
-    public UsersDTO getUsers() {
+    public UsersResponse getUsers() {
         var query = new UsersListQuery();
         var result = queryExecutor.execute(query, UsersListQueryResult.class);
-        return UsersDTO
+        return UsersResponse
                 .builder()
                 .users(result.getUserEntities()
                         .stream()
@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @DeleteMapping
-    public void deleteUser(final DeleteUserDTO userDTO) {
+    public void deleteUser(final DeleteUserRequest userDTO) {
         var command = new DeleteUserCommand(userDTO.getUserId());
         commandExecutor.execute(command);
     }

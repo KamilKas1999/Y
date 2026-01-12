@@ -28,7 +28,7 @@ public class DefaultEventService implements EventService {
                 .user(user)
                 .content(content)
                 .build();
-
+        
         eventRepository.save(entity);
     }
 

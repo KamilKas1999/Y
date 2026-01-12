@@ -1,5 +1,9 @@
-package com.kasprzak.kamil.demoapp.post;
+package com.kasprzak.kamil.demoapp.post.service;
 
+import com.kasprzak.kamil.demoapp.post.CommentEntity;
+import com.kasprzak.kamil.demoapp.post.CommentRepository;
+import com.kasprzak.kamil.demoapp.post.PostEntity;
+import com.kasprzak.kamil.demoapp.post.PostRepository;
 import com.kasprzak.kamil.demoapp.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +29,8 @@ public class DefaultPostService implements PostService {
     public List<PostEntity> getPosts() {
         return postRepository.findAll();
     }
+
+    public List<PostEntity> getUserPosts(Long userId){ return postRepository.findByUserEntity_Id(userId);};
 
     @Override
     public void deletePost(long id) {

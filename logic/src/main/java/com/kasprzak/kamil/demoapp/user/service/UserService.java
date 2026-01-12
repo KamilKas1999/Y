@@ -1,4 +1,7 @@
-package com.kasprzak.kamil.demoapp.user;
+package com.kasprzak.kamil.demoapp.user.service;
+
+import com.kasprzak.kamil.demoapp.user.Role;
+import com.kasprzak.kamil.demoapp.user.UserEntity;
 
 import java.util.List;
 

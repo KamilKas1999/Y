@@ -26,10 +26,9 @@ public class NotificationController {
 
 
     @GetMapping("/{userId}")
-    public NotificationsDTO getNotification(@PathVariable Long userId) {
+    public NotificationsRequest getNotification(@PathVariable Long userId) {
         var queryResult = queryExecutor.execute(new NotificationsQuery(userId), NotificationsQueryResult.class);
-        return mapperExceutor.map(queryResult, NotificationsDTO.class);
+        return mapperExceutor.map(queryResult, NotificationsRequest.class);
     }
-
 
 }

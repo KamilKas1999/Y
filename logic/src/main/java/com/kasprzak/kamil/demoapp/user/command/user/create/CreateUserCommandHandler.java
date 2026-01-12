@@ -1,8 +1,7 @@
 package com.kasprzak.kamil.demoapp.user.command.user.create;
 
-import com.kasprzak.kamil.demoapp.common.command.CommandHandler;
 import com.kasprzak.kamil.demoapp.common.command.CommandHandlerWithResult;
-import com.kasprzak.kamil.demoapp.user.UserService;
+import com.kasprzak.kamil.demoapp.user.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +13,8 @@ public class CreateUserCommandHandler implements CommandHandlerWithResult<Create
 
     @Override
     public CreateUserCommandResult handle(final CreateUserCommand command) {
-        var userdId = userService.createUser(command.getFirstname(), command.getLastname(),
+        var userId = userService.createUser(command.getFirstname(), command.getLastname(),
                 command.getEmail(), command.getPassword(), command.getRole());
-        return new CreateUserCommandResult(userdId);
+        return new CreateUserCommandResult(userId);
     }
 }

@@ -1,27 +1,26 @@
 package com.kasprzak.kamil.demoapp.notification.mapper;
 
 import com.kasprzak.kamil.demoapp.common.mapper.Mapper;
-import com.kasprzak.kamil.demoapp.event.EventsDTO;
 import com.kasprzak.kamil.demoapp.notification.NotificationDTO;
-import com.kasprzak.kamil.demoapp.notification.NotificationsDTO;
+import com.kasprzak.kamil.demoapp.notification.NotificationsRequest;
 import com.kasprzak.kamil.demoapp.notification.query.get.NotificationsQueryResult;
 
 import java.util.stream.Collectors;
 
-public class NotificationsQueryResultToNotificationDTOMapper implements Mapper<NotificationsQueryResult, NotificationsDTO> {
+public class NotificationsQueryResultToNotificationDTOMapper implements Mapper<NotificationsQueryResult, NotificationsRequest> {
     @Override
     public Class<NotificationsQueryResult> getSourceType() {
         return NotificationsQueryResult.class;
     }
 
     @Override
-    public Class<NotificationsDTO> getTargetType() {
-        return NotificationsDTO.class;
+    public Class<NotificationsRequest> getTargetType() {
+        return NotificationsRequest.class;
     }
 
     @Override
-    public NotificationsDTO map(NotificationsQueryResult source) {
-        return NotificationsDTO
+    public NotificationsRequest map(NotificationsQueryResult source) {
+        return NotificationsRequest
                 .builder()
                 .notifications(source.getNotifications().stream()
                         .map(notificationEntity -> NotificationDTO

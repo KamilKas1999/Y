@@ -5,7 +5,6 @@ import com.kasprzak.kamil.demoapp.common.mapper.MapperExceutor;
 import com.kasprzak.kamil.demoapp.common.query.QueryExecutor;
 import com.kasprzak.kamil.demoapp.event.query.get.EventsQuery;
 import com.kasprzak.kamil.demoapp.event.query.get.EventsQueryResult;
-import com.kasprzak.kamil.demoapp.notification.NotificationsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,10 +25,8 @@ public class EventController {
     private MapperExceutor mapperExceutor;
 
     @GetMapping("/{userId}")
-    public NotificationsDTO getEvents(@PathVariable Long userId) {
+    public EventsResponse getEvents(@PathVariable Long userId) {
         var queryResult = queryExecutor.execute(new EventsQuery(userId), EventsQueryResult.class);
-        return mapperExceutor.map(queryResult, NotificationsDTO.class);
+        return mapperExceutor.map(queryResult, EventsResponse.class);
     }
-
-
 }

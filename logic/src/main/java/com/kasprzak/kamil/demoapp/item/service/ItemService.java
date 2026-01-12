@@ -1,4 +1,4 @@
-package com.kasprzak.kamil.demoapp.item;
+package com.kasprzak.kamil.demoapp.item.service;
 
 public interface ItemService {
 
