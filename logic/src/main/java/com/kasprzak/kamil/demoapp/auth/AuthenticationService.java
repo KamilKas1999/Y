@@ -3,6 +3,7 @@ package com.kasprzak.kamil.demoapp.auth;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kasprzak.kamil.demoapp.auth.event.NewUserRegisteredEvent;
 import com.kasprzak.kamil.demoapp.common.command.CommandExecutor;
+import com.kasprzak.kamil.demoapp.common.exceptions.BusinesException;
 import com.kasprzak.kamil.demoapp.common.kafka.producer.KafkaProducer;
 import com.kasprzak.kamil.demoapp.common.query.QueryExecutor;
 import com.kasprzak.kamil.demoapp.security.JwtService;
@@ -13,6 +14,7 @@ import com.kasprzak.kamil.demoapp.user.UserEntity;
 import com.kasprzak.kamil.demoapp.user.UserRepository;
 import com.kasprzak.kamil.demoapp.user.command.user.create.CreateUserCommand;
 import com.kasprzak.kamil.demoapp.user.command.user.create.CreateUserCommandResult;
+import com.kasprzak.kamil.demoapp.user.exceptions.UserNotFoundException;
 import com.kasprzak.kamil.demoapp.user.query.one.UserQuery;
 import com.kasprzak.kamil.demoapp.user.query.one.UsersQueryResult;
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,7 +41,7 @@ public class AuthenticationService {
 
     private final KafkaProducer kafkaProducer;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) throws BusinesException {
 //        var user = UserEntity.builder()
 //                .firstname(request.getFirstname())
 //                .lastname(request.getLastname())
@@ -48,9 +50,11 @@ public class AuthenticationService {
 //                .role(request.getRole())
 //                .build();
 //        var savedUser = repository.save(user);
+
         var command = new CreateUserCommand(request.getFirstname(), request.getLastname(), request.getEmail(),
                 request.getPassword(), request.getRole());
         var commandResult = commandExecutor.execute(command, CreateUserCommandResult.class);
+
         var query = new UserQuery(commandResult.userId());
         var user = queryExecutor.execute(query, UsersQueryResult.class);
 
@@ -64,15 +68,18 @@ public class AuthenticationService {
                 .build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    public AuthenticationResponse authenticate(AuthenticationRequest request) throws UserNotFoundException {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.email(),
                         request.password()
                 )
         );
-        var user = repository.findByEmail(request.email())
-                .orElseThrow();
+        var userOptional = repository.findByEmail(request.email());
+        if (userOptional.isEmpty()){
+            throw new UserNotFoundException();
+        }
+        var user = userOptional.get();
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);

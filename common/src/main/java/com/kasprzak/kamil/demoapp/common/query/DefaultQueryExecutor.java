@@ -1,5 +1,6 @@
 package com.kasprzak.kamil.demoapp.common.query;
 
+import com.kasprzak.kamil.demoapp.common.exceptions.BusinesException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ public class DefaultQueryExecutor implements QueryExecutor {
     private List<QueryHandler<?, ?>> commandHandlers;
 
     @Override
-    public <T extends QueryResult> T execute(Query query, Class<T> resultType) throws QueryHandlerNotFoundException {
+    public <T extends QueryResult> T execute(Query query, Class<T> resultType) throws QueryHandlerNotFoundException, BusinesException {
         var handler = commandHandlers.stream()
                 .filter(h -> h.supports(query))
                 .map(h -> (QueryHandler<Query, QueryResult>) h) // Unikamy niepoprawnego rzutowania

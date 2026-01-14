@@ -1,19 +1,13 @@
 package com.kasprzak.kamil.demoapp.common.mapper;
 
-import com.kasprzak.kamil.demoapp.common.query.Query;
-import com.kasprzak.kamil.demoapp.common.query.QueryHandler;
-import com.kasprzak.kamil.demoapp.common.query.QueryHandlerNotFoundException;
-import com.kasprzak.kamil.demoapp.common.query.QueryResult;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Component
-public class DefaultMapperExecutor implements MapperExceutor{
+public class DefaultMapperExecutor implements MapperExecutor {
 
     private final Map<String, Mapper<?, ?>> mappers = new HashMap<>();
 

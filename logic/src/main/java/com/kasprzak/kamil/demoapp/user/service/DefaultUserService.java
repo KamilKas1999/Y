@@ -3,6 +3,7 @@ package com.kasprzak.kamil.demoapp.user.service;
 import com.kasprzak.kamil.demoapp.user.Role;
 import com.kasprzak.kamil.demoapp.user.UserEntity;
 import com.kasprzak.kamil.demoapp.user.UserRepository;
+import com.kasprzak.kamil.demoapp.user.exceptions.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,10 @@ public class DefaultUserService implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public UserEntity getUsersById(long id) {
-        return userRepository.findById(id).orElseThrow();
+    public UserEntity getUsersById(long id) throws UserNotFoundException {
+        return userRepository
+                .findById(id)
+                .orElseThrow(() -> new UserNotFoundException(id));
     }
 
     public Long createUser(final String name, final String lastName, final String email,

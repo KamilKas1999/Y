@@ -1,5 +1,7 @@
 package com.kasprzak.kamil.demoapp.common.query;
 
+import com.kasprzak.kamil.demoapp.common.exceptions.BusinesException;
+
 import java.lang.reflect.ParameterizedType;
 
 public interface QueryHandler<Q extends Query, R extends QueryResult> {
@@ -18,7 +20,7 @@ public interface QueryHandler<Q extends Query, R extends QueryResult> {
         throw new IllegalStateException("Cannot determine query type");
     }
 
-    R handle(Q query);
+    R handle(Q query) throws BusinesException;
 
 
 }

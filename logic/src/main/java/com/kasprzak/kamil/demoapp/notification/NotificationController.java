@@ -1,7 +1,8 @@
 package com.kasprzak.kamil.demoapp.notification;
 
 import com.kasprzak.kamil.demoapp.common.command.CommandExecutor;
-import com.kasprzak.kamil.demoapp.common.mapper.MapperExceutor;
+import com.kasprzak.kamil.demoapp.common.exceptions.BusinesException;
+import com.kasprzak.kamil.demoapp.common.mapper.MapperExecutor;
 import com.kasprzak.kamil.demoapp.common.query.QueryExecutor;
 import com.kasprzak.kamil.demoapp.notification.query.get.NotificationsQuery;
 import com.kasprzak.kamil.demoapp.notification.query.get.NotificationsQueryResult;
@@ -22,13 +23,13 @@ public class NotificationController {
     private CommandExecutor commandExecutor;
 
     @Autowired
-    private MapperExceutor mapperExceutor;
+    private MapperExecutor mapperExecutor;
 
 
     @GetMapping("/{userId}")
-    public NotificationsRequest getNotification(@PathVariable Long userId) {
+    public NotificationsRequest getNotification(@PathVariable Long userId) throws BusinesException {
         var queryResult = queryExecutor.execute(new NotificationsQuery(userId), NotificationsQueryResult.class);
-        return mapperExceutor.map(queryResult, NotificationsRequest.class);
+        return mapperExecutor.map(queryResult, NotificationsRequest.class);
     }
 
 }

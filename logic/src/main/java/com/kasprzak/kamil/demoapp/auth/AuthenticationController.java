@@ -1,5 +1,7 @@
 package com.kasprzak.kamil.demoapp.auth;
 
+import com.kasprzak.kamil.demoapp.common.exceptions.BusinesException;
+import com.kasprzak.kamil.demoapp.user.exceptions.UserNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -21,13 +23,13 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
-    ) {
+    ) throws BusinesException {
         return ResponseEntity.ok(service.register(request));
     }
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request
-    ) {
+    ) throws UserNotFoundException {
         return ResponseEntity.ok(service.authenticate(request));
     }
 

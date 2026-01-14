@@ -1,6 +1,7 @@
 package com.kasprzak.kamil.demoapp.user;
 
 import com.kasprzak.kamil.demoapp.common.command.CommandExecutor;
+import com.kasprzak.kamil.demoapp.common.exceptions.BusinesException;
 import com.kasprzak.kamil.demoapp.common.query.QueryExecutor;
 import com.kasprzak.kamil.demoapp.user.command.user.delete.DeleteUserCommand;
 import com.kasprzak.kamil.demoapp.user.query.all.UsersListQuery;
@@ -30,7 +31,7 @@ public class UserController {
 //    }
 
     @GetMapping
-    public UsersResponse getUsers() {
+    public UsersResponse getUsers() throws BusinesException {
         var query = new UsersListQuery();
         var result = queryExecutor.execute(query, UsersListQueryResult.class);
         return UsersResponse

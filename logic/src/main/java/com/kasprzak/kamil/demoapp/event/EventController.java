@@ -1,7 +1,8 @@
 package com.kasprzak.kamil.demoapp.event;
 
 import com.kasprzak.kamil.demoapp.common.command.CommandExecutor;
-import com.kasprzak.kamil.demoapp.common.mapper.MapperExceutor;
+import com.kasprzak.kamil.demoapp.common.exceptions.BusinesException;
+import com.kasprzak.kamil.demoapp.common.mapper.MapperExecutor;
 import com.kasprzak.kamil.demoapp.common.query.QueryExecutor;
 import com.kasprzak.kamil.demoapp.event.query.get.EventsQuery;
 import com.kasprzak.kamil.demoapp.event.query.get.EventsQueryResult;
@@ -22,11 +23,11 @@ public class EventController {
     private CommandExecutor commandExecutor;
 
     @Autowired
-    private MapperExceutor mapperExceutor;
+    private MapperExecutor mapperExecutor;
 
     @GetMapping("/{userId}")
-    public EventsResponse getEvents(@PathVariable Long userId) {
+    public EventsResponse getEvents(@PathVariable Long userId) throws BusinesException {
         var queryResult = queryExecutor.execute(new EventsQuery(userId), EventsQueryResult.class);
-        return mapperExceutor.map(queryResult, EventsResponse.class);
+        return mapperExecutor.map(queryResult, EventsResponse.class);
     }
 }

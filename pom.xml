@@ -67,7 +67,7 @@
 			<dependency>
 				<groupId>com.kasprzak.kamil.demoapp</groupId>
 				<artifactId>common</artifactId>
-				<version>${project.version}</version>  <!-- Automatycznie pobiera wersję -->
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.kasprzak.kamil.demoapp</groupId>
