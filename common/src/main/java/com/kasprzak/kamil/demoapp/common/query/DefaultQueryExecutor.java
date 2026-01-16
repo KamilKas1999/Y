@@ -17,7 +17,7 @@ public class DefaultQueryExecutor implements QueryExecutor {
     public <T extends QueryResult> T execute(Query query, Class<T> resultType) throws QueryHandlerNotFoundException, BusinesException {
         var handler = commandHandlers.stream()
                 .filter(h -> h.supports(query))
-                .map(h -> (QueryHandler<Query, QueryResult>) h) // Unikamy niepoprawnego rzutowania
+                .map(h -> (QueryHandler<Query, QueryResult>) h)
                 .findAny()
                 .orElseThrow(() -> new QueryHandlerNotFoundException(query.getClass().getSimpleName()));
 
