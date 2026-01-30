@@ -23,11 +23,9 @@ public class KafkaConsumerService {
 
     @Autowired
     public KafkaConsumerService(List<KafkaMessageHandler<?>> messageHandlers) {
-        // Mapowanie: typ eventu -> lista handlerów
         this.handlerMap = messageHandlers.stream()
                 .collect(Collectors.groupingBy(KafkaMessageHandler::getEventType));
 
-        // Mapowanie: nazwa klasy (ze stringa w nagłówku Kafka) -> klasa typu eventu
         this.eventTypeMap = messageHandlers.stream()
                 .collect(Collectors.toMap(
                         handler -> handler.getEventType().getName(),
@@ -63,7 +61,6 @@ public class KafkaConsumerService {
             }
 
         } catch (Exception e) {
-            // Logowanie błędu, najlepiej przez logger zamiast sout
             e.printStackTrace();
         }
     }
